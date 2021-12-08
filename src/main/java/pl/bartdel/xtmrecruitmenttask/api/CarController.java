@@ -21,8 +21,14 @@ public class CarController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    Car addNewCar(@RequestBody Car newCar){
-        return repository.save(newCar);
+    ResponseEntity<?> addNewCar(@RequestBody Car newCar){
+       try {
+           repository.save(newCar);
+           return ResponseEntity.ok().build();
+       }
+       catch (Exception e){
+           return ResponseEntity.internalServerError().build();
+       }
     }
 
     @PutMapping("/{id}")
