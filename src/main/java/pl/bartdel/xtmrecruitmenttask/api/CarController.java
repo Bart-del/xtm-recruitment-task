@@ -15,7 +15,8 @@ public class CarController {
 
     private final CarRepo repository;
 
-    CarController(CarRepo carRepo){
+    @Autowired
+    public CarController(CarRepo carRepo){
         this.repository = carRepo;
     }
 

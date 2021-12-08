@@ -1,4 +1,4 @@
-# Allegro Summer Experience Project 2021
+# XTM Recruitment Task Poznań 2021
 
 
 ### English below
@@ -13,16 +13,23 @@
 
 ## O projekcie
 
-Projekt powstał w ramach zadania rekrutacyjnego na stanowisko Intern Software Engineer w programie Allegro Summer E-Xperience. Zadanie brzmiało:
+Projekt powstał w ramach zadania rekrutacyjnego na stanowisko Intern Java Developer w firmie XTM. Zadanie brzmiało:
 
 ```
-Projekt nr. 3
+Opracuj backend prostej wypożyczalni samochodów.
 
-Stwórz oprogramowanie pozwalające na:
-- listowanie repozytoriów (nazwa i liczba gwiazdek),
-- zwracanie sumy gwiazdek we wszystkich repozytoriach,
-dla dowolnego użytkownika serwisu GitHub.
-Dane powinny być zwracane za pomocą protokołu HTTP.
+Aplikacja powinna umożliwiać:
+- dodanie nowego samochodu do oferty wypożyczalni
+- usunięcie samochodu z oferty wypożyczalni
+- edytowanie danych samochodu
+- wypożyczenie samochodu przez klienta (tylko jeden klient może wypożyczyć ten sam samochód w danym momencie)
+- oddanie wypożyczonego samochodu
+
+Mile widziane:
+użycie bazy danych
+
+Aplikacja powinna posiadać REST API oraz uruchamiać się bez błędów. Pamiętaj również o testach jednostkowych i integracyjnych!
+
 ```
 
 Wszystkie wymagania projektu zostały zrealizowane, a kod udostępniam na swoim koncie GitHub.
@@ -31,10 +38,11 @@ Wszystkie wymagania projektu zostały zrealizowane, a kod udostępniam na swoim 
 
 W projekcie użyłem następujących technologii:
 
-* Java w wersji 11.02
-* Framework Spring w wersji 2.4.5
-* Biblioteka Unirest w wersji 1.4.9 do nawiązania połączenia z API Github'a
-* Biblioteka Hamcrest w wersji 2.2 do testów
+* Java w wersji 17
+* Framework Spring w wersji 2.6.1
+* Spring Web do stworzenia REST API
+* Spring Data JPA do integracji aplikacji z bazą danych Remote MySQL
+* Lombok do ograniczenia boilerplate code
 
 ## Instalacja
 
