@@ -44,17 +44,32 @@ public class CarControllerTest {
     @Test
     public void deleteCar_Success(){
         Car car = new Car();
-        car.setId(1L);
-        car.setModel("A17");
-        car.setYearOfProduction(Year.of(2015));
-        car.setProducer(Producer.BMW);
+        car.setId(14L);
+        car.setModel("A30");
+        car.setYearOfProduction(Year.of(2020));
+        car.setProducer(Producer.VOLVO);
 
         carController.addNewCar(car);
 
         ResponseEntity<?> response = carController.deleteCar(car.getId());
+        assertThat(response.getStatusCode()).isEqualByComparingTo(HttpStatus.OK);
+    }
+
+    @Test
+    public void deleteCar_Failure(){
+        ResponseEntity<?> response = carController.deleteCar(12312312423123151L);
+        assertThat(response.getStatusCode()).isEqualByComparingTo(HttpStatus.NOT_FOUND);
+    }
+
+    @Test
+    public void updateCar_Success(){
+        Car carOld = new Car();
+        carOld.setId(50L);
+        carOld.setModel("X-way");
+        carOld.setYearOfProduction(Year.of(2018));
+        carOld.setProducer(Producer.SKODA);
+        carController.addNewCar(carOld);
 
 
     }
-
-
 }

@@ -13,7 +13,6 @@ import java.time.Year;
 @ToString
 public class Car {
     @Id
-    @GeneratedValue
     private Long id;
     @Column(nullable = false)
     private String model;
