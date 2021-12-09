@@ -32,8 +32,8 @@ public class CarController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    void deleteCar(@PathVariable Long id){
-        carService.deleteCar(id);
+    ResponseEntity<?> deleteCar(@PathVariable Long id){
+        return carService.deleteCar(id);
     }
 
     @PutMapping("/rent/{id}")

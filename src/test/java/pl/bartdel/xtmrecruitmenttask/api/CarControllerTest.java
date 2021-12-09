@@ -41,5 +41,20 @@ public class CarControllerTest {
         assertThat(response.getStatusCode()).isEqualByComparingTo(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @Test
+    public void deleteCar_Success(){
+        Car car = new Car();
+        car.setId(1L);
+        car.setModel("A17");
+        car.setYearOfProduction(Year.of(2015));
+        car.setProducer(Producer.BMW);
+
+        carController.addNewCar(car);
+
+        ResponseEntity<?> response = carController.deleteCar(car.getId());
+
+
+    }
+
 
 }
