@@ -10,7 +10,6 @@ import java.time.Year;
 @Entity
 @Setter
 @Getter
-@ToString
 public class Car {
     @Id
     private Long id;
