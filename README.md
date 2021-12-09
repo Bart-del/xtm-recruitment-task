@@ -10,6 +10,7 @@
 * [Instalacja](#instalacja)
 * [Jak to działa?](#jak-to-działa)
 * [Potencjalne kierunki rozwoju](#potencjalne-kierunki-rozwoju)
+* [Uwaga](#uwaga)
 
 ## O projekcie
 
@@ -63,23 +64,34 @@ Po instalacji i uruchomieniu aplikacji na serwerze użytkownik ma możliwość:
 * modyfikacji danych samochodu
 * wypożyczenie samochodu
 * oddanie samochodu z wypożyczenia
+
+Może to robić poprzez endpointy:
 ```
-/api/github_data?user=przykładowy_użytkownik_githuba
+/cars/{id}
+```
+oraz
+```
+/cars/rent/{id}
+/cars/return_rented_car/{id}
 ```
 
-Przykładowy adres wyglądałby w ten sposób:
-```
-https://adres_ip_serwera/api/github_data?user=Bart-del
-```
-Aplikacja zwróci nazwy moich wszystkich publicznych repozytoriów oraz gwiazdek w formacie JSON używając protokołu HTTP.
+Aplikacja umieszcza i modyfikuje dane w bazie postawionej na remotemysql.com.
+
+API zostało napisane w ramach zasad REST. Dlatego wywołanie konkretnej metody zależy od wybranej metody HTPP.
 
 ## Potencjalne kierunki rozwoju
 
-Projekt w obecnym stanie nie jest zbyt rozbudowany, jednak może stanowić dobrą bazę do dalszego rozwoju. Przyszłe potencjalne funkcje mogą obejmowac na przykład:
-* Poszerzenie zwracanych danych o dodakowe informacje o repozytoriach danego użytkownika i nie tylko
-* Zbieranie statystyk o wszelkich projektach open source w celach badawczych
-* Badanie kierunku rozwoju oraz trendów w open source korzystając z dodatkowych danych, które udostępnia GitHub w swoim API
-* Stworzenie serwisu internetowego, lub aplikacji mobilnej, która wykorzysta udostępniane dane i przedstawi je w estetyczny sposób
+Projekt w obecnym stanie nie jest zbyt rozbudowany, jednak może stanowić dobrą bazę do dalszego rozwoju. Przyszłe potencjalne funkcje mogą obejmować:
+* Rozbudowa encji samochodu o dodatkowe dane,
+* Stworzenie encji reprezentujej klientów,
+* Zabezpieczenie backendu za pomocą Spring Security,
+* Dodanie kolejnych funkcji biznesowych
+
+## Uwaga
+
+Hasło do bazy danych zostało umieszczone w pliku application.properties. 
+Zdaję sobie sprawę z tego, że jest to ZŁA PRAKTYKA i ogólnie rzeczy biorąc nie należy tak robić. Na potrzeby tego niewielkiego projektu 
+uznałem jednak, że ułatwi to podgląd działania kodu osobie, która będzie go weryfikować.
 
 
 ## Table of contents
@@ -91,16 +103,21 @@ Projekt w obecnym stanie nie jest zbyt rozbudowany, jednak może stanowić dobr�
 
 ## About project
 
-The project was created as part of a recruitment task for the position of Intern Software Engineer in the Allegro Summer E-Xperience program. The task was:
-
+The project was created as part of a recruitment task for the position of Intern Java Developer at XTM. The task was:
 ```
-Project no. 3
+Develop the backend of a simple car rental company.
 
-Create software that allows you to:
-- listing of repositories (name and number of stars),
-- returning the sum of stars in all repositories,
-for any GitHub user.
-Data should be returned using the HTTP protocol. 
+The application should enable:
+- adding a new car to the rental company's offer
+- removing the car from the rental company's offer
+- editing car data
+- car rental by a customer (only one customer can rent the same car at a time)
+- return of the rented car
+
+Welcome:
+database usage
+
+The application should have REST API and run without errors. Also remember about unit and integration tests!
 ```
 
 All project requirements have been fulfilled and the code is available on my GitHub account.
@@ -109,10 +126,12 @@ All project requirements have been fulfilled and the code is available on my Git
 
 In the project, I used the following technologies:
 
-* Java version 11.02
-* Framework Spring version 2.4.5
-* Unirest library version 1.4.9 to connect to the Github API
-* Hamcrest library version 2.2 for tests
+* Java version 17
+* Framework Spring version 2.6.1
+* Spring Web to create a REST API
+* Spring Data JPA to integrate the application with the Remote MySQL database
+* Lombok to limit the boilerplate code
+* AssertJ for testing
 
 ## Setup
 
@@ -126,21 +145,35 @@ If you just want to test the project, you can also download the source code and 
 
 ## How it works?
 
-After installing and running the application on the server, the data is returned via endpoint:
-```
-/api/github_data?user=exemplary_github_user
-```
+After installing and running the application on the server, the user has the option to:
+* adding a car to the rental offer
+* removing the car from the rental company's offer
+* car data modification
+* car rental
+* returning the car from the rental
 
-An example address would look like this:
+It can do this through endpoints:
 ```
-https://server_ip_address/api/github_data?user=Bart-del
+/cars/{id}
 ```
-The application will return the names of all my public repositories and asterisks in JSON format using the HTTP protocol.
+and
+```
+/cars/rent/{id}
+/cars/return_rented_car/{id}
+```
+The application places and modifies data in the database set on remotemysql.com
+
+The API was written under the REST rules. Therefore, calling a particular method depends on the selected HTPP method.
 
 ## Future development
 
-The project in its current state is not very extensive, but it can constitute a good basis for further development. Future potential features may include, for example:
-* Extending the returned data with additional information about the repositories of a given user and more
-* Collecting statistics on any open source projects for research purposes
-* Research on the direction of development and trends in open source using additional data that GitHub provides in its API
-* Creating a website or a mobile application that will use the shared data and present it in an aesthetic way 
+The project in its current state is not very extensive, but it can be a good basis for further development. Future potential features may include:
+* Expansion of the car entity with additional data,
+* Create an entity to represent clients,
+* Backend protection with Spring Security,
+* Adding more business functions
+
+## Note
+
+The database password has been placed in the application.properties file. I realize that this is BAD PRACTICE and, in general, you shouldn't do it. For the purposes of this small project, however, 
+I decided that it would make it easier for the person who will verify the code to see how the code works.
