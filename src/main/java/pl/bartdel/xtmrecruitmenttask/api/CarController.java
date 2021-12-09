@@ -18,6 +18,11 @@ public class CarController {
         this.carService= carService;
     }
 
+    @GetMapping
+    ResponseEntity<?> get(Long id){
+        return carService.getCarById(id);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     ResponseEntity<?> addNewCar(@RequestBody Car newCar){

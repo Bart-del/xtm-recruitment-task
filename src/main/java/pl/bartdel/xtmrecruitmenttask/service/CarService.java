@@ -2,8 +2,6 @@ package pl.bartdel.xtmrecruitmenttask.service;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import pl.bartdel.xtmrecruitmenttask.entity.Car;
 import pl.bartdel.xtmrecruitmenttask.repository.CarRepo;
 
@@ -19,7 +17,7 @@ public class CarService {
         this.carRepo = carRepo;
     }
 
-    public ResponseEntity<?> addNewCar(@RequestBody Car newCar){
+    public ResponseEntity<?> addNewCar(Car newCar){
         try {
             carRepo.save(newCar);
             return ResponseEntity.ok().build();
@@ -65,7 +63,7 @@ public class CarService {
         return ResponseEntity.noContent().build();
     }
 
-    public ResponseEntity<?> returnCar(@PathVariable Long id){
+    public ResponseEntity<?> returnCar(Long id){
         Optional<Car> carOptional = carRepo.findById(id);
 
         if(carOptional.isEmpty())
@@ -79,5 +77,17 @@ public class CarService {
         carRepo.save(car);
         return ResponseEntity.noContent().build();
 
+    }
+
+    public ResponseEntity<?> getCarById(Long id){
+        Optional<Car> carOptional = carRepo.findById(id);
+
+        if(carOptional.isEmpty())
+            return ResponseEntity.notFound().build();
+
+        if(!carOptional.get().isRented())
+            return ResponseEntity.badRequest().build();
+
+        return ResponseEntity.of(carOptional);
     }
 }
