@@ -79,15 +79,4 @@ public class CarService {
 
     }
 
-    public ResponseEntity<?> getCarById(Long id){
-        Optional<Car> carOptional = carRepo.findById(id);
-
-        if(carOptional.isEmpty())
-            return ResponseEntity.notFound().build();
-
-        if(!carOptional.get().isRented())
-            return ResponseEntity.badRequest().build();
-
-        return ResponseEntity.of(carOptional);
-    }
 }

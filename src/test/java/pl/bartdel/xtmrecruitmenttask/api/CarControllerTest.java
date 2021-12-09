@@ -70,6 +70,7 @@ public class CarControllerTest {
         carOld.setProducer(Producer.SKODA);
         carController.addNewCar(carOld);
 
+        System.out.println(carController.get(carOld.getId()).getBody());
 
     }
 }
