@@ -29,8 +29,14 @@ public class CarService {
         }
     }
 
-    public void deleteCar(Long id){
-        carRepo.deleteById(id);
+    public ResponseEntity<?> deleteCar(Long id){
+        try {
+            carRepo.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
     }
 
     public ResponseEntity<?> updateCar(Long id, Car car){
