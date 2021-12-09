@@ -43,6 +43,7 @@ W projekcie użyłem następujących technologii:
 * Spring Web do stworzenia REST API
 * Spring Data JPA do integracji aplikacji z bazą danych Remote MySQL
 * Lombok do ograniczenia boilerplate code
+* AssertJ do testów
 
 ## Instalacja
 
@@ -56,7 +57,12 @@ Jeżeli chcesz tylko przetestować projekt możesz również pobrać kod źród�
 
 ## Jak to działa?
 
-Po instalacji i uruchomieniu aplikacji na serwerze dane są zwracane poprzez endpoint:
+Po instalacji i uruchomieniu aplikacji na serwerze użytkownik ma możliwość:
+* dodania samochodu do oferty wypożyczalni
+* usunięcia samochodu z oferty wypożyczalni
+* modyfikacji danych samochodu
+* wypożyczenie samochodu
+* oddanie samochodu z wypożyczenia
 ```
 /api/github_data?user=przykładowy_użytkownik_githuba
 ```
