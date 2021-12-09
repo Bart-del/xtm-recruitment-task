@@ -37,7 +37,7 @@ public class CarController {
         return carService.rentACar(id);
     }
 
-    @PutMapping("/returnRentedCar/{id}")
+    @PutMapping("/return_rented_car/{id}")
     ResponseEntity<?> returnCar(@PathVariable Long id){
         return carService.returnRentedCar(id);
 
