@@ -39,7 +39,7 @@ public class CarController {
 
     @PutMapping("/returnRentedCar/{id}")
     ResponseEntity<?> returnCar(@PathVariable Long id){
-        return carService.returnCar(id);
+        return carService.returnRentedCar(id);
 
     }
 }

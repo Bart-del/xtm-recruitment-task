@@ -45,7 +45,7 @@ public class CarService {
 
         car.setId(id);
         carRepo.save(car);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     public ResponseEntity<?> rentACar(Long id){
@@ -60,10 +60,10 @@ public class CarService {
         Car car = carOptional.get();
         car.setRented(true);
         carRepo.save(car);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
-    public ResponseEntity<?> returnCar(Long id){
+    public ResponseEntity<?> returnRentedCar(Long id){
         Optional<Car> carOptional = carRepo.findById(id);
 
         if(carOptional.isEmpty())
@@ -79,4 +79,8 @@ public class CarService {
 
     }
 
+    //Method added for testing purposes only. It was not defined in the requirements of the task.
+    public Optional<Car> getCar(Long id){
+        return carRepo.findById(id);
+    }
 }
